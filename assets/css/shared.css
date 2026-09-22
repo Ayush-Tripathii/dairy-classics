@@ -420,8 +420,225 @@ button {
   100% { transform: scale(0.9); opacity: 0.8; }
 }
 
+/* Mobile Hamburger Button */
+.mobile-menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  background: rgba(54, 23, 14, 0.07);
+  border: 1px solid rgba(54, 23, 14, 0.16);
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.25s ease;
+}
+
+.theme-luxury .mobile-menu-toggle {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(229, 195, 120, 0.3);
+}
+
+.hamburger-bar {
+  width: 20px;
+  height: 2px;
+  background: #36170E;
+  border-radius: 2px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.theme-luxury .hamburger-bar {
+  background: #E5C378;
+}
+
+/* Mobile Slide-In Navigation Drawer */
+.mobile-drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(14, 5, 3, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 2000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+
+.mobile-drawer-backdrop.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-nav-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(340px, 86vw);
+  background: #24110A;
+  color: #FAF4EE;
+  z-index: 2001;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: -12px 0 45px rgba(0, 0, 0, 0.55);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.mobile-nav-drawer.active {
+  transform: translateX(0);
+}
+
+.mobile-drawer-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px;
+  border-bottom: 1px solid rgba(229, 195, 120, 0.16);
+  background: #190B06;
+}
+
+.drawer-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.drawer-logo-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  border: 1.5px solid #E5C378;
+  object-fit: cover;
+}
+
+.mobile-drawer-close {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(229, 195, 120, 0.25);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: #E5C378;
+  cursor: pointer;
+  line-height: 1;
+  transition: all 0.2s ease;
+}
+
+.mobile-drawer-close:hover {
+  background: rgba(229, 195, 120, 0.2);
+  transform: scale(1.1);
+}
+
+.mobile-drawer-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
+}
+
+.mobile-nav-group-title {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #E5C378;
+  opacity: 0.9;
+  margin-bottom: -6px;
+}
+
+.mobile-nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.mobile-nav-item {
+  display: flex;
+  align-items: center;
+  padding: 9px 12px;
+  border-radius: 8px;
+  color: #FAF4EE;
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 700;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.mobile-nav-item:hover,
+.mobile-nav-item:active {
+  background: rgba(229, 195, 120, 0.14);
+  color: #E5C378;
+}
+
+.mobile-drawer-footer {
+  margin-top: auto;
+  padding-top: 15px;
+  border-top: 1px solid rgba(229, 195, 120, 0.16);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.mobile-drawer-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px;
+  background: linear-gradient(135deg, #E5C378 0%, #C89F48 100%);
+  color: #1E0C06;
+  font-weight: 800;
+  font-size: 0.88rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-radius: 999px;
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(229, 195, 120, 0.35);
+  transition: transform 0.2s ease;
+}
+
+.mobile-drawer-cta:hover {
+  transform: translateY(-2px);
+}
+
+.mobile-drawer-socials {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  font-size: 0.78rem;
+}
+
+.mobile-drawer-socials a {
+  color: rgba(250, 244, 238, 0.7);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.mobile-drawer-socials a:hover {
+  color: #E5C378;
+}
+
 @media (max-width: 860px) {
   .main-nav {
+    display: none !important;
+  }
+  .mobile-menu-toggle {
+    display: flex !important;
+  }
+  .header-actions .btn-header-cta {
     display: none !important;
   }
   .quickview-grid {
@@ -835,7 +1052,7 @@ button {
 .choco-stage {
   height: 500px !important;
   background: radial-gradient(circle at 50% 50%, rgba(58, 27, 17, 0.45) 0%, transparent 70%);
-  cursor: none !important; /* Managed by custom cursor follower */
+  cursor: grab;
   position: relative;
 }
 
@@ -1122,7 +1339,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: none !important; /* Managed by custom cursor follower */
+  cursor: grab;
   overflow: hidden;
 }
 
@@ -3301,12 +3518,12 @@ button {
    LIVE 4-COLUMN FOOTER - ARTISANAL CHOCOLATE MILK DESIGN
    ======================================================== */
 .footer-live-4col {
-  background: linear-gradient(180deg, #321610 0%, #200E0A 55%, #140705 100%);
+  background: linear-gradient(180deg, #4E281F 0%, #3C1C15 55%, #2C130D 100%);
   color: #FAF3EB;
   padding: 85px 0 0 0;
   position: relative;
   margin-top: 70px;
-  box-shadow: 0 -20px 50px rgba(32, 14, 10, 0.35);
+  box-shadow: 0 -20px 50px rgba(45, 18, 12, 0.35);
 }
 
 .theme-luxury .footer-live-4col {
@@ -3333,7 +3550,7 @@ button {
 }
 
 .footer-choco-drip-svg .choco-drip-path {
-  fill: #321610;
+  fill: #4E281F;
 }
 
 .theme-luxury .footer-choco-drip-svg .choco-drip-path {
@@ -3801,15 +4018,18 @@ button {
   animation: stage-reveal-pulse 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-.stage-docked-arrival .showcase-ambient-glow {
+.stage-docked-arrival .showcase-ambient-glow,
+.stage-docked-arrival #dynamic-ambient-glow {
   animation: docking-shockwave 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-.stage-docked-arrival #rotator-3d-wrap {
+.stage-docked-arrival #rotator-3d-wrap,
+.stage-docked-arrival .cs-tilt-box {
   animation: docking-tub-flourish 0.95s cubic-bezier(0.34, 1.45, 0.64, 1) forwards;
 }
 
-.stage-docked-arrival .showcase-stage-disc {
+.stage-docked-arrival .showcase-stage-disc,
+.stage-docked-arrival .cs-pedestal-glow {
   animation: disc-glow-pulse 0.9s ease-out forwards;
 }
 

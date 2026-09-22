@@ -123,8 +123,15 @@
 
   function init() {
     const stage = document.getElementById('stage-360');
-    if (!stage) return;
+    if (stage) {
+      init3DStageRotator(stage);
+    }
 
+    // Initialize Scroll-Driven Flight Animation (Hero -> The Flavour Universe / Coverflow Stage)
+    initHeroTo3dFlightAnimation();
+  }
+
+  function init3DStageRotator(stage) {
     const rotatorWrap = document.getElementById('rotator-3d-wrap');
     const productImg = document.getElementById('product-360-img');
     const specularGlow = document.getElementById('specular-glow');
@@ -393,21 +400,18 @@
     const initialFlavorKey = initialHeroTab ? initialHeroTab.dataset.flavor : (window.ACTIVE_HERO_FLAVOR || 'french-vanilla');
     const initialIdx = SHOWCASE_PRODUCTS.findIndex(p => p.id === initialFlavorKey);
     goToSlide(initialIdx !== -1 ? initialIdx : 0);
-
-    // Initialize Scroll-Driven Flight Animation (Hero -> 3D Stage)
-    initHeroTo3dFlightAnimation();
   }
 
   // ==========================================================
-  // SCROLL-DRIVEN FLIGHT ANIMATION (ONLY HERO -> 3D STAGE DOWNWARD)
+  // SCROLL-DRIVEN FLIGHT ANIMATION (HERO -> THE FLAVOUR UNIVERSE)
   // ==========================================================
   function initHeroTo3dFlightAnimation() {
     const proxy = document.getElementById('flight-proxy-tub');
     const proxyImg = document.getElementById('flight-proxy-img');
     const heroTub = document.getElementById('art-stage-img') || document.getElementById('stage-tub-img');
-    const targetWrap = document.getElementById('rotator-3d-wrap');
-    const targetImg = document.getElementById('product-360-img');
-    const stagePane = document.getElementById('stage-360');
+    const targetWrap = document.getElementById('tilt-product-box') || document.getElementById('card-center-hero');
+    const targetImg = document.getElementById('card-hero-img');
+    const stagePane = document.getElementById('coverflow-interactive-zone') || document.getElementById('product-studio-3d');
 
     if (!proxy || !proxyImg || !heroTub || !targetWrap || !targetImg || !stagePane) return;
 
@@ -434,14 +438,14 @@
     syncHeroImage();
 
     function createDockingSparkles() {
-      for (let i = 0; i < 10; i++) {
+      for (let i = 0; i < 12; i++) {
         const p = document.createElement('div');
         p.className = 'docking-sparkle-star';
         p.textContent = ['✦', '✨', '•', '★'][i % 4];
         p.style.left = `${45 + (Math.random() * 20 - 10)}%`;
         p.style.top = `${45 + (Math.random() * 20 - 10)}%`;
-        p.style.setProperty('--dx', `${(Math.random() * 180 - 90)}px`);
-        p.style.setProperty('--dy', `${(Math.random() * 180 - 90)}px`);
+        p.style.setProperty('--dx', `${(Math.random() * 200 - 100)}px`);
+        p.style.setProperty('--dy', `${(Math.random() * 200 - 100)}px`);
         stagePane.appendChild(p);
         setTimeout(() => p.remove(), 1200);
       }
@@ -469,7 +473,6 @@
       }
 
       // 2. STRICT RULE: When scrolling UP, NEVER play reverse flight!
-      // "niche se upr jate time esa na ho only hero se niche scroll krne por aaye"
       if (isScrollingUp) {
         proxy.style.opacity = '0';
         proxy.style.visibility = 'hidden';
@@ -502,10 +505,10 @@
         // Stage image begins emerging as proxy arrives
         targetImg.style.opacity = Math.max(0, (progress - 0.45) * 2).toFixed(2);
 
-        // Pre-sync Section 2 details & matching flavor!
+        // Pre-sync The Flavour Universe matching flavor!
         const activeKey = getActiveHeroFlavorKey();
-        if (window.syncShowcaseToFlavor && activeKey) {
-          window.syncShowcaseToFlavor(activeKey);
+        if (window.syncCoverflowToFlavor && activeKey) {
+          window.syncCoverflowToFlavor(activeKey);
         }
 
         // Centers for smooth flight trajectory
@@ -514,8 +517,8 @@
         const targetCenterX = targetRect.left + targetRect.width / 2;
         const targetCenterY = targetRect.top + targetRect.height / 2;
 
-        const proxyW = proxy.offsetWidth || 320;
-        const proxyH = proxy.offsetHeight || 320;
+        const proxyW = proxy.offsetWidth || 340;
+        const proxyH = proxy.offsetHeight || 340;
 
         // Smooth cubic ease curve
         const ease = 0.5 - Math.cos(progress * Math.PI) / 2;
@@ -526,22 +529,22 @@
         const posY = curCenterY - proxyH / 2;
 
         // Dynamic scale & aerodynamic tilt as it descends
-        const currentScale = 1 + Math.sin(progress * Math.PI) * 0.12;
-        const currentRotate = Math.sin(progress * Math.PI) * 14;
+        const currentScale = 1 + Math.sin(progress * Math.PI) * 0.14;
+        const currentRotate = Math.sin(progress * Math.PI) * 16;
 
         proxy.style.transform = `translate3d(${posX.toFixed(1)}px, ${posY.toFixed(1)}px, 0) scale(${currentScale.toFixed(3)}) rotate(${currentRotate.toFixed(1)}deg)`;
       } else if (progress >= 0.94) {
-        // Docked into 3D Showcase Stage!
+        // Docked into The Flavour Universe Stage!
         isFlightArmed = false; // Disarm once landed
         proxy.style.opacity = '0';
         proxy.style.visibility = 'hidden';
         targetImg.style.opacity = '1';
         heroTub.style.opacity = '0';
 
-        // Ensure 3D section shows the EXACT matching flavor and all its details!
+        // Ensure Flavour Universe shows the EXACT matching flavor and all its details!
         const activeKey = getActiveHeroFlavorKey();
-        if (window.syncShowcaseToFlavor && activeKey) {
-          window.syncShowcaseToFlavor(activeKey);
+        if (window.syncCoverflowToFlavor && activeKey) {
+          window.syncCoverflowToFlavor(activeKey);
         }
 
         if (!hasDocked) {

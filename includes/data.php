@@ -24,37 +24,17 @@ $brand = [
 
 // Main Highlight Products (Used for Hero 3D & Pints Slider)
 $products = [
-    'belgian-chocolate' => [
-        'id' => 'belgian-chocolate',
-        'name' => 'Belgian Chocolate Truffle',
-        'short_name' => 'Belgian Chocolate',
-        'category' => 'Gourmet Pint',
-        'badge' => 'Chef\'s Decadence',
-        'size' => '500 ml Pint',
-        'image' => 'assets/images/products/belgian-chocolate-tub.png',
-        'rating' => 5.0,
-        'reviews_count' => 4180,
-        'description' => 'Rich 72% dark Belgian cocoa ribbons folded into velvet chocolate gelato, crowned with crisp hand-curled dark chocolate shavings.',
-        'tasting_notes' => ['72% Dark Belgian Cocoa', 'Roasted Espresso Note', 'Melted Truffle Core'],
-        'calories' => '280 kcal',
-        'fat' => '17g',
-        'sugar' => '22g',
-        'protein' => '6.4g',
-        'tags' => ['Belgian Couverture', 'Zero Palm Oil', 'Rich & Intense'],
-        'colors' => [
-            'primary' => '#54311C',
-            'glow' => 'rgba(160, 82, 45, 0.45)'
-        ]
-    ],
     'french-vanilla' => [
         'id' => 'french-vanilla',
         'name' => 'French Vanilla Royale',
         'short_name' => 'French Vanilla',
         'category' => 'Gourmet Pint',
-        'badge' => 'Signature Blend',
+        'badge' => 'GRAND CRU RESERVE',
+        'badge_style' => 'background: #FDF6E2; color: #A67C1E;',
+        'origin_kicker' => '500ML SPLASH TUB • MADAGASCAR & FRANCE',
         'size' => '500 ml Pint',
-        'image' => 'assets/images/products/french-vanilla-tub.png',
-        'rating' => 4.9,
+        'image' => 'assets/images/products/french-vanilla-splash-tub.png',
+        'rating' => 4.95,
         'reviews_count' => 3420,
         'description' => 'Double-creamed farm milk steeped with aromatic Madagascar Bourbon vanilla pods and hand-scraped vanilla seeds for the ultimate silky comfort.',
         'tasting_notes' => ['Bourbon Vanilla Pods', 'Sweet Buttercream', 'Warm Caramel Swirl'],
@@ -68,14 +48,40 @@ $products = [
             'glow' => 'rgba(212, 175, 55, 0.4)'
         ]
     ],
+    'belgian-chocolate' => [
+        'id' => 'belgian-chocolate',
+        'name' => 'Belgian Chocolate',
+        'short_name' => 'Belgian Chocolate',
+        'category' => 'Gourmet Pint',
+        'badge' => 'MASTER RESERVE',
+        'badge_style' => 'background: #F5ECE8; color: #7A5243;',
+        'origin_kicker' => '500ML SPLASH TUB • BRUSSELS, BELGIUM',
+        'size' => '500 ml Pint',
+        'image' => 'assets/images/products/belgian-chocolate-splash-tub.png',
+        'rating' => 5.0,
+        'reviews_count' => 4180,
+        'description' => 'Single-origin 72% dark Belgian cocoa ribbons folded into velvet chocolate gelato, crowned with crisp hand-curled dark chocolate shavings.',
+        'tasting_notes' => ['72% Dark Belgian Cocoa', 'Roasted Espresso Note', 'Melted Truffle Core'],
+        'calories' => '280 kcal',
+        'fat' => '17g',
+        'sugar' => '22g',
+        'protein' => '6.4g',
+        'tags' => ['Belgian Couverture', 'Zero Palm Oil', 'Rich & Intense'],
+        'colors' => [
+            'primary' => '#54311C',
+            'glow' => 'rgba(160, 82, 45, 0.45)'
+        ]
+    ],
     'mint-pistachio' => [
         'id' => 'mint-pistachio',
         'name' => 'Mint Pistachio Crunch',
         'short_name' => 'Mint Pistachio',
         'category' => 'Gourmet Pint',
-        'badge' => 'Artisanal Batch',
+        'badge' => "CHEF'S SIGNATURE",
+        'badge_style' => 'background: #E6F5ED; color: #2E7D52;',
+        'origin_kicker' => '500ML SPLASH TUB • BRONTE, SICILY',
         'size' => '500 ml Pint',
-        'image' => 'assets/images/products/mint-pistachio-tub.png',
+        'image' => 'assets/images/products/mint-pistachio-splash-tub.png',
         'rating' => 4.92,
         'reviews_count' => 2450,
         'description' => 'Fresh garden spearmint infused into double-creamed milk, folded with roasted California pistachios and dark chocolate chips.',
@@ -90,78 +96,14 @@ $products = [
             'glow' => 'rgba(61, 115, 86, 0.45)'
         ]
     ],
-    'golden-fantasy' => [
-        'id' => 'golden-fantasy',
-        'name' => 'Golden Fantasy Swirl Cone',
-        'short_name' => 'Golden Fantasy',
-        'category' => 'Gourmet Cone',
-        'badge' => 'Iconic Classic',
-        'size' => '120 ml Waffle Cone',
-        'image' => 'assets/images/live/golden-f.webp',
-        'rating' => 4.9,
-        'reviews_count' => 2840,
-        'description' => 'Split of two flavour vanilla and chocolate in crunchy wafer coated with chocolate along with roasted peanuts surpringly divine taste.',
-        'tasting_notes' => ['Dual Flavor Vanilla & Chocolate', 'Crispy Waffle Cone', 'Roasted Peanut Crunch'],
-        'calories' => '230 kcal',
-        'fat' => '12g',
-        'sugar' => '18g',
-        'protein' => '4.8g',
-        'tags' => ['Classic Since 1996', 'Double Swirl', 'Crunchy Peanuts'],
-        'colors' => [
-            'primary' => '#D48B38',
-            'glow' => 'rgba(212, 139, 56, 0.45)'
-        ]
-    ],
-    'choco-boom' => [
-        'id' => 'choco-boom',
-        'name' => 'Choco Boom Cone',
-        'short_name' => 'Choco Boom',
-        'category' => 'Gourmet Cone',
-        'badge' => 'Choco Lover Choice',
-        'size' => '120 ml Waffle Cone',
-        'image' => 'assets/images/live/boom-c.webp',
-        'rating' => 4.95,
-        'reviews_count' => 3100,
-        'description' => 'Chocolate ice cream filled in crunchy wafer coated with chocolate along with crispy roasted peanuts that give distinctive taste to your mood pleasure.',
-        'tasting_notes' => ['Dense Chocolate Gelato', 'Choco-Dipped Tip', 'Golden Peanuts'],
-        'calories' => '245 kcal',
-        'fat' => '13g',
-        'sugar' => '21g',
-        'protein' => '5.0g',
-        'tags' => ['Decadent Chocolate', 'Waffle Cone', 'Crunch Shell'],
-        'colors' => [
-            'primary' => '#4A2518',
-            'glow' => 'rgba(74, 37, 24, 0.45)'
-        ]
-    ],
-    'super-twist' => [
-        'id' => 'super-twist',
-        'name' => 'Super Twist Raspberry Cone',
-        'short_name' => 'Super Twist',
-        'category' => 'Gourmet Cone',
-        'badge' => 'Berry Delight',
-        'size' => '120 ml Waffle Cone',
-        'image' => 'assets/images/live/twist-x.webp',
-        'rating' => 4.88,
-        'reviews_count' => 1950,
-        'description' => 'Vanilla Ice cream centered Raspberry sauce filled in crunchy wafer coated chocolate, won the soul and taste bud of ice cream lover.',
-        'tasting_notes' => ['Real Raspberry Coulis', 'Velvet Vanilla Cream', 'Chocolate Shell'],
-        'calories' => '220 kcal',
-        'fat' => '11g',
-        'sugar' => '20g',
-        'protein' => '4.2g',
-        'tags' => ['Raspberry Core', 'Sweet & Tart', 'Waffle Cone'],
-        'colors' => [
-            'primary' => '#9B1B40',
-            'glow' => 'rgba(155, 27, 64, 0.45)'
-        ]
-    ],
     'almond-crunch' => [
         'id' => 'almond-crunch',
-        'name' => 'Almond Crunch Praline Bar',
+        'name' => 'Almond Crunch Bar',
         'short_name' => 'Almond Bar',
         'category' => 'Artisanal Bar',
-        'badge' => 'Best Handheld',
+        'badge' => 'ARTISANAL CRUNCH',
+        'badge_style' => 'background: #F6EFE6; color: #8C5627;',
+        'origin_kicker' => '90ML GOURMET BAR • CALIFORNIA PRALINE',
         'size' => '90 ml Gourmet Bar',
         'image' => 'assets/images/products/almond-crunch-bar.png',
         'rating' => 4.95,
@@ -178,26 +120,52 @@ $products = [
             'glow' => 'rgba(197, 125, 60, 0.45)'
         ]
     ],
-    'round-pie' => [
-        'id' => 'round-pie',
-        'name' => 'Round Pie Cookie Sandwich',
-        'short_name' => 'Round Pie',
-        'category' => 'Sandwich',
-        'badge' => 'Cookie Special',
-        'size' => '95 ml Sandwich',
-        'image' => 'assets/images/live/round.webp',
-        'rating' => 4.85,
-        'reviews_count' => 1620,
-        'description' => 'Imaginative creation perfectly round vanilla ice cream with premium cookies coated with chocolate.',
-        'tasting_notes' => ['Crunchy Chocolate Cookie', 'Pure Vanilla Core', 'Chocolate Enrobing'],
-        'calories' => '260 kcal',
-        'fat' => '14g',
-        'sugar' => '22g',
-        'protein' => '4.9g',
-        'tags' => ['Cookie Sandwich', 'Handcrafted', 'Chocolate Crust'],
+    'golden-fantasy' => [
+        'id' => 'golden-fantasy',
+        'name' => 'Golden Fantasy Swirl',
+        'short_name' => 'Golden Fantasy',
+        'category' => 'Gourmet Cone',
+        'badge' => 'ICONIC HERITAGE',
+        'badge_style' => 'background: #FCF6E8; color: #9A6F20;',
+        'origin_kicker' => '120ML WAFFLE CONE • TASHKENT SINCE 1996',
+        'size' => '120 ml Waffle Cone',
+        'image' => 'assets/images/products/golden-fantasy.png',
+        'rating' => 4.9,
+        'reviews_count' => 2840,
+        'description' => 'Dual swirl vanilla and chocolate in crunchy waffle wafer coated with chocolate along with roasted golden peanuts.',
+        'tasting_notes' => ['Dual Flavor Vanilla & Chocolate', 'Crispy Waffle Cone', 'Roasted Peanut Crunch'],
+        'calories' => '230 kcal',
+        'fat' => '12g',
+        'sugar' => '18g',
+        'protein' => '4.8g',
+        'tags' => ['Classic Since 1996', 'Double Swirl', 'Crunchy Peanuts'],
         'colors' => [
-            'primary' => '#3E2723',
-            'glow' => 'rgba(62, 39, 35, 0.4)'
+            'primary' => '#D48B38',
+            'glow' => 'rgba(212, 139, 56, 0.45)'
+        ]
+    ],
+    'celebration-cake' => [
+        'id' => 'celebration-cake',
+        'name' => 'Celebration Gâteau',
+        'short_name' => 'Celebration Cake',
+        'category' => 'Gourmet Gâteau',
+        'badge' => 'ROYAL JUBILEE',
+        'badge_style' => 'background: #FCEEF1; color: #A02848;',
+        'origin_kicker' => '1000ML GOURMET CAKE • 3-LAYER SPECIALTY',
+        'size' => '1000 ml Cake',
+        'image' => 'assets/images/products/chocolate-celebration-cake.png',
+        'rating' => 4.98,
+        'reviews_count' => 2100,
+        'description' => 'Triple-layer artisanal gelato torte layered with dark chocolate truffles, strawberry coulis, and pistachio praline.',
+        'tasting_notes' => ['Dark Truffle Layer', 'Vanilla Bean Mousse', 'Pistachio Crumble'],
+        'calories' => '310 kcal',
+        'fat' => '19g',
+        'sugar' => '26g',
+        'protein' => '6.2g',
+        'tags' => ['Grand Occasions', 'Handmade Layers', 'Serves 8-10'],
+        'colors' => [
+            'primary' => '#8E1C3D',
+            'glow' => 'rgba(142, 28, 61, 0.45)'
         ]
     ],
     'sandwich' => [
@@ -242,28 +210,6 @@ $products = [
         'colors' => [
             'primary' => '#3E1C14',
             'glow' => 'rgba(62, 28, 20, 0.4)'
-        ]
-    ],
-    'celebration-cake' => [
-        'id' => 'celebration-cake',
-        'name' => 'Triple-Layer Gateau Cake',
-        'short_name' => 'Celebration Cake',
-        'category' => 'Ice Cream Cake',
-        'badge' => 'Party Showstopper',
-        'size' => '1.0 kg Gateau (Serves 8-10)',
-        'image' => 'assets/images/products/chocolate-celebration-cake.png',
-        'rating' => 5.0,
-        'reviews_count' => 1290,
-        'description' => 'Architectural trio of Belgian dark chocolate, white vanilla cream, and milk chocolate sponge, glazed in dark ganache drip, fresh strawberries, and gold accents.',
-        'tasting_notes' => ['Glossy Dark Ganache', 'Farm Fresh Strawberry', 'Trio Ice Cream Layers'],
-        'calories' => '320 kcal/slice',
-        'fat' => '19g',
-        'sugar' => '26g',
-        'protein' => '6.8g',
-        'tags' => ['Handmade Layering', 'Fresh Fruit', 'Celebration Edition'],
-        'colors' => [
-            'primary' => '#B83248',
-            'glow' => 'rgba(219, 68, 85, 0.45)'
         ]
     ]
 ];
@@ -711,32 +657,32 @@ $faqs_data = [
 $instagram_posts = [
     [
         'image' => 'assets/images/live/485038988_9670411909687914_5815841654752973913_n.jpg',
-        'caption' => 'Pure creamy happiness in every Golden Fantasy bite ✨ #DairyClassic #Uzbekistan',
+        'caption' => 'Pure creamy happiness in every Golden Fantasy bite ✨',
         'likes' => '1.4k'
     ],
     [
         'image' => 'assets/images/live/485171700_18497555821004628_2375668312933697309_n.jpg',
-        'caption' => 'Vega Bar loaded with crispy roasted peanuts & rich chocolate coating 🥜🍫',
+        'caption' => 'Vega Bar loaded with crispy roasted peanuts & chocolate 🥜🍫',
         'likes' => '2.1k'
     ],
     [
         'image' => 'assets/images/live/486483028_1109892090950006_7006204567457217081_n.jpg',
-        'caption' => 'Creamica Cheese Cake – rich blueberry indulgence in a cup 🫐🍨',
+        'caption' => 'Creamica Cheese Cake – rich blueberry indulgence 🫐🍨',
         'likes' => '1.8k'
     ],
     [
         'image' => 'assets/images/live/Sweet.jpg',
-        'caption' => 'Bringing sweet moments closer across Uzbekistan since 1996 🇺🇿❤️',
+        'caption' => 'Bringing sweet moments closer since 1996 🇺🇿❤️',
         'likes' => '3.2k'
     ],
     [
         'image' => 'assets/images/live/chocol.jpg',
-        'caption' => 'Rich Belgian chocolate ribbons and real slow-churned farm milk 🍫🥛',
+        'caption' => 'Rich Belgian chocolate ribbons and farm-fresh milk 🍫🥛',
         'likes' => '2.5k'
     ],
     [
         'image' => 'assets/images/live/choco4.webp',
-        'caption' => 'Sandwich biscuits & crunchy wafer cones ready for the weekend celebration! 🎉',
+        'caption' => 'Sandwich biscuits & wafer cones for celebrations! 🎉',
         'likes' => '1.9k'
     ]
 ];

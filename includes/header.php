@@ -3,6 +3,63 @@
 $current_design = isset($design) ? $design : 1;
 ?>
 
+<!-- Instant Mobile Menu Control Script -->
+<script>
+  window.openMobileMenu = function(e) {
+    if (e && e.preventDefault) e.preventDefault();
+    if (e && e.stopPropagation) e.stopPropagation();
+    var drawer = document.getElementById('mobile-nav-drawer');
+    var backdrop = document.getElementById('mobile-drawer-backdrop');
+    var btn = document.getElementById('mobile-menu-toggle');
+    if (drawer) {
+      drawer.classList.add('active');
+      drawer.setAttribute('aria-hidden', 'false');
+    }
+    if (backdrop) {
+      backdrop.classList.add('active');
+      backdrop.setAttribute('aria-hidden', 'false');
+    }
+    if (btn) {
+      btn.setAttribute('aria-expanded', 'true');
+      btn.classList.add('is-active');
+    }
+    document.body.classList.add('mobile-drawer-open');
+    document.body.style.overflow = 'hidden';
+  };
+
+  window.closeMobileMenu = function(e) {
+    if (e && e.stopPropagation) e.stopPropagation();
+    var drawer = document.getElementById('mobile-nav-drawer');
+    var backdrop = document.getElementById('mobile-drawer-backdrop');
+    var btn = document.getElementById('mobile-menu-toggle');
+    if (drawer) {
+      drawer.classList.remove('active');
+      drawer.setAttribute('aria-hidden', 'true');
+    }
+    if (backdrop) {
+      backdrop.classList.remove('active');
+      backdrop.setAttribute('aria-hidden', 'true');
+    }
+    if (btn) {
+      btn.setAttribute('aria-expanded', 'false');
+      btn.classList.remove('is-active');
+    }
+    document.body.classList.remove('mobile-drawer-open');
+    document.body.style.overflow = '';
+  };
+
+  window.toggleMobileMenu = function(e) {
+    if (e && e.preventDefault) e.preventDefault();
+    if (e && e.stopPropagation) e.stopPropagation();
+    var drawer = document.getElementById('mobile-nav-drawer');
+    if (drawer && (drawer.classList.contains('active') || document.body.classList.contains('mobile-drawer-open'))) {
+      window.closeMobileMenu(e);
+    } else {
+      window.openMobileMenu(e);
+    }
+  };
+</script>
+
 <!-- Header Navigation Bar -->
 <header class="site-header <?= $current_design == 2 ? 'header-luxury' : 'header-playful' ?>" id="site-header">
   <div class="container header-inner">
@@ -33,7 +90,7 @@ $current_design = isset($design) ? $design : 1;
           </a>
           <ul class="nav-dropdown-menu">
             <li><a href="#catalog-showcase" onclick="if(window.filterCatalogCategory) window.filterCatalogCategory('cassatta')">Cassatta</a></li>
-            <li><a href="#spin360">Tubs</a></li>
+            <li><a href="#flavors">Tubs</a></li>
             <li><a href="#about-heritage">About Us</a></li>
             <li><a href="#faqs">FAQs</a></li>
             <li><a href="#contact-us">Contact Us</a></li>
@@ -65,6 +122,59 @@ $current_design = isset($design) ? $design : 1;
       <a href="#catalog-showcase" class="btn-header-cta <?= $current_design == 2 ? 'btn-cta-gold' : 'btn-cta-pastel' ?>">
         <span>Explore Treats</span>
       </a>
+
+      <!-- Mobile Hamburger Button -->
+      <button class="mobile-menu-toggle" id="mobile-menu-toggle" type="button" aria-label="Toggle Navigation Menu" aria-expanded="false" aria-controls="mobile-nav-drawer" onclick="window.toggleMobileMenu(event);">
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+      </button>
     </div>
   </div>
 </header>
+
+<!-- Mobile Slide-In Navigation Drawer -->
+<div class="mobile-drawer-backdrop" id="mobile-drawer-backdrop" aria-hidden="true" onclick="window.closeMobileMenu(event);"></div>
+<aside class="mobile-nav-drawer" id="mobile-nav-drawer" aria-label="Mobile Navigation" aria-hidden="true">
+  <div class="mobile-drawer-head">
+    <div class="drawer-logo">
+      <img src="assets/images/dairy-classic-logo.jpg" alt="Dairy Classic Logo" class="drawer-logo-img">
+      <div style="display: flex; flex-direction: column;">
+        <strong style="font-family: var(--font-cinzel); font-size: 1.05rem; color: #FFF; line-height: 1.2;">Dairy Classic</strong>
+        <span style="font-size: 0.62rem; color: #E5C378; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700;">Since 1996 &bull; Uzbekistan</span>
+      </div>
+    </div>
+    <button class="mobile-drawer-close" id="mobile-drawer-close" type="button" aria-label="Close navigation menu" onclick="window.closeMobileMenu(event);">&times;</button>
+  </div>
+
+  <div class="mobile-drawer-body">
+    <div class="mobile-nav-group-title">Treat Categories</div>
+    <ul class="mobile-nav-list">
+      <li><a href="#catalog-showcase" class="mobile-nav-item" onclick="if(window.filterCatalogCategory) window.filterCatalogCategory('cones'); window.closeMobileMenu(event);">🍦 Cones</a></li>
+      <li><a href="#catalog-showcase" class="mobile-nav-item" onclick="if(window.filterCatalogCategory) window.filterCatalogCategory('sticks'); window.closeMobileMenu(event);">🍫 Sticks &amp; Bars</a></li>
+      <li><a href="#catalog-showcase" class="mobile-nav-item" onclick="if(window.filterCatalogCategory) window.filterCatalogCategory('cups'); window.closeMobileMenu(event);">🍧 Cups &amp; Sundaes</a></li>
+      <li><a href="#catalog-showcase" class="mobile-nav-item" onclick="if(window.filterCatalogCategory) window.filterCatalogCategory('biscuit'); window.closeMobileMenu(event);">🍪 Biscuit Sandwiches</a></li>
+      <li><a href="#catalog-showcase" class="mobile-nav-item" onclick="if(window.filterCatalogCategory) window.filterCatalogCategory('cassatta'); window.closeMobileMenu(event);">🍰 Cassatta Cake</a></li>
+      <li><a href="#flavors" class="mobile-nav-item" onclick="window.closeMobileMenu(event);">🍨 Gourmet Tubs</a></li>
+    </ul>
+
+    <div class="mobile-nav-group-title">Explore &amp; Info</div>
+    <ul class="mobile-nav-list">
+      <li><a href="#about-heritage" class="mobile-nav-item" onclick="window.closeMobileMenu(event);">📖 Our Heritage</a></li>
+      <li><a href="#recipes" class="mobile-nav-item" onclick="window.closeMobileMenu(event);">🍹 Signature Recipes</a></li>
+      <li><a href="#faqs" class="mobile-nav-item" onclick="window.closeMobileMenu(event);">❓ FAQs</a></li>
+      <li><a href="#contact-us" class="mobile-nav-item" onclick="window.closeMobileMenu(event);">📞 Contact Us</a></li>
+    </ul>
+
+    <div class="mobile-drawer-footer">
+      <a href="#catalog-showcase" class="mobile-drawer-cta" onclick="window.closeMobileMenu(event);">
+        <span>Explore Full Menu</span>
+      </a>
+      <div class="mobile-drawer-socials">
+        <a href="https://www.instagram.com/dairyclassic.uz/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">Instagram</a>
+        <a href="https://www.facebook.com/DairyClassicsIceCream/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">Facebook</a>
+        <a href="https://t.me/dairyclassic" target="_blank" rel="noopener noreferrer" aria-label="Telegram">Telegram</a>
+      </div>
+    </div>
+  </div>
+</aside>

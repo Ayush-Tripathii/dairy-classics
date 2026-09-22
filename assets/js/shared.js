@@ -241,9 +241,82 @@ function initCategoryProductRain() {
   observer.observe(section);
 }
 
+  // Mobile Drawer Menu (Global helpers)
+  window.openMobileMenu = function(e) {
+    if (e && e.preventDefault) e.preventDefault();
+    if (e && e.stopPropagation) e.stopPropagation();
+    const drawer = document.getElementById('mobile-nav-drawer');
+    const backdrop = document.getElementById('mobile-drawer-backdrop');
+    const btn = document.getElementById('mobile-menu-toggle');
+    if (drawer) {
+      drawer.classList.add('active');
+      drawer.setAttribute('aria-hidden', 'false');
+    }
+    if (backdrop) {
+      backdrop.classList.add('active');
+      backdrop.setAttribute('aria-hidden', 'false');
+    }
+    if (btn) {
+      btn.setAttribute('aria-expanded', 'true');
+      btn.classList.add('is-active');
+    }
+    document.body.classList.add('mobile-drawer-open');
+    document.body.style.overflow = 'hidden';
+  };
+
+  window.closeMobileMenu = function(e) {
+    if (e && e.stopPropagation) e.stopPropagation();
+    const drawer = document.getElementById('mobile-nav-drawer');
+    const backdrop = document.getElementById('mobile-drawer-backdrop');
+    const btn = document.getElementById('mobile-menu-toggle');
+    if (drawer) {
+      drawer.classList.remove('active');
+      drawer.setAttribute('aria-hidden', 'true');
+    }
+    if (backdrop) {
+      backdrop.classList.remove('active');
+      backdrop.setAttribute('aria-hidden', 'true');
+    }
+    if (btn) {
+      btn.setAttribute('aria-expanded', 'false');
+      btn.classList.remove('is-active');
+    }
+    document.body.classList.remove('mobile-drawer-open');
+    document.body.style.overflow = '';
+  };
+
+  window.toggleMobileMenu = function(e) {
+    if (e && e.preventDefault) e.preventDefault();
+    if (e && e.stopPropagation) e.stopPropagation();
+    const drawer = document.getElementById('mobile-nav-drawer');
+    if (drawer && (drawer.classList.contains('active') || document.body.classList.contains('mobile-drawer-open'))) {
+      window.closeMobileMenu(e);
+    } else {
+      window.openMobileMenu(e);
+    }
+  };
+
+  function initMobileNavDrawer() {
+    // Keyboard accessibility & screen resizing
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        window.closeMobileMenu(e);
+        if (typeof closeQuickView === 'function') closeQuickView();
+      }
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 1024) {
+        window.closeMobileMenu();
+      }
+    });
+  }
+
+// Global initialization on DOM ready
 document.addEventListener('DOMContentLoaded', () => {
   initStoreLocator();
   initCategoryProductRain();
+  initMobileNavDrawer();
   
   // Close modal when clicking backdrop
   const modalBackdrop = document.getElementById('quickview-modal-backdrop');
@@ -255,3 +328,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+

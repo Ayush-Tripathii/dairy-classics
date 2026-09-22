@@ -11,6 +11,63 @@
 <body class="theme-artisanal">
 
 
+<!-- Instant Mobile Menu Control Script -->
+<script>
+  window.openMobileMenu = function(e) {
+    if (e && e.preventDefault) e.preventDefault();
+    if (e && e.stopPropagation) e.stopPropagation();
+    var drawer = document.getElementById('mobile-nav-drawer');
+    var backdrop = document.getElementById('mobile-drawer-backdrop');
+    var btn = document.getElementById('mobile-menu-toggle');
+    if (drawer) {
+      drawer.classList.add('active');
+      drawer.setAttribute('aria-hidden', 'false');
+    }
+    if (backdrop) {
+      backdrop.classList.add('active');
+      backdrop.setAttribute('aria-hidden', 'false');
+    }
+    if (btn) {
+      btn.setAttribute('aria-expanded', 'true');
+      btn.classList.add('is-active');
+    }
+    document.body.classList.add('mobile-drawer-open');
+    document.body.style.overflow = 'hidden';
+  };
+
+  window.closeMobileMenu = function(e) {
+    if (e && e.stopPropagation) e.stopPropagation();
+    var drawer = document.getElementById('mobile-nav-drawer');
+    var backdrop = document.getElementById('mobile-drawer-backdrop');
+    var btn = document.getElementById('mobile-menu-toggle');
+    if (drawer) {
+      drawer.classList.remove('active');
+      drawer.setAttribute('aria-hidden', 'true');
+    }
+    if (backdrop) {
+      backdrop.classList.remove('active');
+      backdrop.setAttribute('aria-hidden', 'true');
+    }
+    if (btn) {
+      btn.setAttribute('aria-expanded', 'false');
+      btn.classList.remove('is-active');
+    }
+    document.body.classList.remove('mobile-drawer-open');
+    document.body.style.overflow = '';
+  };
+
+  window.toggleMobileMenu = function(e) {
+    if (e && e.preventDefault) e.preventDefault();
+    if (e && e.stopPropagation) e.stopPropagation();
+    var drawer = document.getElementById('mobile-nav-drawer');
+    if (drawer && (drawer.classList.contains('active') || document.body.classList.contains('mobile-drawer-open'))) {
+      window.closeMobileMenu(e);
+    } else {
+      window.openMobileMenu(e);
+    }
+  };
+</script>
+
 <!-- Header Navigation Bar -->
 <header class="site-header header-playful" id="site-header">
   <div class="container header-inner">
@@ -41,7 +98,7 @@
           </a>
           <ul class="nav-dropdown-menu">
             <li><a href="#catalog-showcase" onclick="if(window.filterCatalogCategory) window.filterCatalogCategory('cassatta')">Cassatta</a></li>
-            <li><a href="#spin360">Tubs</a></li>
+            <li><a href="#flavors">Tubs</a></li>
             <li><a href="#about-heritage">About Us</a></li>
             <li><a href="#faqs">FAQs</a></li>
             <li><a href="#contact-us">Contact Us</a></li>
@@ -73,9 +130,62 @@
       <a href="#catalog-showcase" class="btn-header-cta btn-cta-pastel">
         <span>Explore Treats</span>
       </a>
+
+      <!-- Mobile Hamburger Button -->
+      <button class="mobile-menu-toggle" id="mobile-menu-toggle" type="button" aria-label="Toggle Navigation Menu" aria-expanded="false" aria-controls="mobile-nav-drawer" onclick="window.toggleMobileMenu(event);">
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+      </button>
     </div>
   </div>
 </header>
+
+<!-- Mobile Slide-In Navigation Drawer -->
+<div class="mobile-drawer-backdrop" id="mobile-drawer-backdrop" aria-hidden="true" onclick="window.closeMobileMenu(event);"></div>
+<aside class="mobile-nav-drawer" id="mobile-nav-drawer" aria-label="Mobile Navigation" aria-hidden="true">
+  <div class="mobile-drawer-head">
+    <div class="drawer-logo">
+      <img src="assets/images/dairy-classic-logo.jpg" alt="Dairy Classic Logo" class="drawer-logo-img">
+      <div style="display: flex; flex-direction: column;">
+        <strong style="font-family: var(--font-cinzel); font-size: 1.05rem; color: #FFF; line-height: 1.2;">Dairy Classic</strong>
+        <span style="font-size: 0.62rem; color: #E5C378; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700;">Since 1996 &bull; Uzbekistan</span>
+      </div>
+    </div>
+    <button class="mobile-drawer-close" id="mobile-drawer-close" type="button" aria-label="Close navigation menu" onclick="window.closeMobileMenu(event);">&times;</button>
+  </div>
+
+  <div class="mobile-drawer-body">
+    <div class="mobile-nav-group-title">Treat Categories</div>
+    <ul class="mobile-nav-list">
+      <li><a href="#catalog-showcase" class="mobile-nav-item" onclick="if(window.filterCatalogCategory) window.filterCatalogCategory('cones'); window.closeMobileMenu(event);">🍦 Cones</a></li>
+      <li><a href="#catalog-showcase" class="mobile-nav-item" onclick="if(window.filterCatalogCategory) window.filterCatalogCategory('sticks'); window.closeMobileMenu(event);">🍫 Sticks &amp; Bars</a></li>
+      <li><a href="#catalog-showcase" class="mobile-nav-item" onclick="if(window.filterCatalogCategory) window.filterCatalogCategory('cups'); window.closeMobileMenu(event);">🍧 Cups &amp; Sundaes</a></li>
+      <li><a href="#catalog-showcase" class="mobile-nav-item" onclick="if(window.filterCatalogCategory) window.filterCatalogCategory('biscuit'); window.closeMobileMenu(event);">🍪 Biscuit Sandwiches</a></li>
+      <li><a href="#catalog-showcase" class="mobile-nav-item" onclick="if(window.filterCatalogCategory) window.filterCatalogCategory('cassatta'); window.closeMobileMenu(event);">🍰 Cassatta Cake</a></li>
+      <li><a href="#flavors" class="mobile-nav-item" onclick="window.closeMobileMenu(event);">🍨 Gourmet Tubs</a></li>
+    </ul>
+
+    <div class="mobile-nav-group-title">Explore &amp; Info</div>
+    <ul class="mobile-nav-list">
+      <li><a href="#about-heritage" class="mobile-nav-item" onclick="window.closeMobileMenu(event);">📖 Our Heritage</a></li>
+      <li><a href="#recipes" class="mobile-nav-item" onclick="window.closeMobileMenu(event);">🍹 Signature Recipes</a></li>
+      <li><a href="#faqs" class="mobile-nav-item" onclick="window.closeMobileMenu(event);">❓ FAQs</a></li>
+      <li><a href="#contact-us" class="mobile-nav-item" onclick="window.closeMobileMenu(event);">📞 Contact Us</a></li>
+    </ul>
+
+    <div class="mobile-drawer-footer">
+      <a href="#catalog-showcase" class="mobile-drawer-cta" onclick="window.closeMobileMenu(event);">
+        <span>Explore Full Menu</span>
+      </a>
+      <div class="mobile-drawer-socials">
+        <a href="https://www.instagram.com/dairyclassic.uz/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">Instagram</a>
+        <a href="https://www.facebook.com/DairyClassicsIceCream/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">Facebook</a>
+        <a href="https://t.me/dairyclassic" target="_blank" rel="noopener noreferrer" aria-label="Telegram">Telegram</a>
+      </div>
+    </div>
+  </div>
+</aside>
 
 <main id="main-content">
   <!-- ========================================================
@@ -108,8 +218,8 @@
               <path d="M5 12h14M12 5l7 7-7 7"/>
             </svg>
           </a>
-          <a href="#stores" class="btn-art-secondary">
-            <span>Find Parlours</span>
+          <a href="#contact-us" class="btn-art-secondary">
+            <span>Contact Us</span>
           </a>
         </div>
 
@@ -199,97 +309,105 @@
     </div>
   </section>
 
-  <!-- ========================================================
-       SECTION 2: 3D/2D INTERACTIVE SHOWCASE SLIDER
-       ======================================================== -->
-  <section class="section-360-viewer choco-theme-360" id="spin360">
-    <div class="choco-ambient-radial"></div>
 
-    <div class="container">
-      <div class="sec-head-360">
-        <span class="badge-360-pill choco-gold-badge">
-          <span>✦ 3D / 2D INTERACTIVE SHOWCASE SLIDER</span>
-        </span>
-        <h2 class="title-360 choco-title">Signature Churned Creations</h2>
-        <p class="subtitle-360 choco-sub">Explore our handcrafted creations in responsive 3D. Move your cursor across or drag to inspect every decadent detail.</p>
+
+  <!-- ========================================================
+       SECTION: 3D INTERACTIVE PRODUCT STUDIO / COVERFLOW
+       ======================================================== -->
+  <section class="section-coverflow-studio" id="product-studio-3d">
+    <!-- Ambient Background Spotlight -->
+    <div class="cs-ambient-spotlight" id="dynamic-ambient-glow" style="background: radial-gradient(circle, rgba(229, 195, 120, 0.45) 0%, rgba(142, 28, 61, 0.25) 50%, transparent 70%);"></div>
+
+    <div class="container" style="position: relative; z-index: 10;">
+      <!-- Top Header Bar -->
+      <div class="cs-header-row">
+        <div>
+          <span class="cs-kicker">✦ INTERACTIVE TASTING ROOM</span>
+          <h2 class="cs-main-title">The Flavour Universe</h2>
+        </div>
+        <div class="cs-header-badges">
+          <div class="cs-glass-badge">
+            <span class="cs-pulse-dot"></span>
+            <span id="studio-badge-text">SIGNATURE BLEND</span>
+          </div>
+          <div class="cs-counter-pill">
+            <strong id="current-slide-num">01</strong> / <span id="total-slides-num">06</span>
+          </div>
+        </div>
       </div>
 
-      <div class="showcase-slider-card">
-        <!-- Minimal Top HUD Bar with Slider Navigation -->
-        <div class="showcase-top-bar">
-          <div class="showcase-counter-pill">
-            <span class="showcase-counter-num" id="showcase-counter-text">01 / 06</span>
-            <span>SIGNATURE CREATION</span>
-          </div>
+      <!-- 3D Coverflow Stage -->
+      <div class="cs-3d-stage-zone" id="coverflow-interactive-zone">
+        <button class="cs-nav-btn cs-btn-prev" id="btn-prev-slide" aria-label="Previous Creation">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 19l-7-7 7-7"/></svg>
+        </button>
+        <button class="cs-nav-btn cs-btn-next" id="btn-next-slide" aria-label="Next Creation">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 5l7 7-7 7"/></svg>
+        </button>
 
-          <div class="showcase-cue-hint">
-            <span class="showcase-cue-pulse"></span>
-            <span>Move cursor or drag to spin in 3D</span>
-          </div>
-
-          <div class="showcase-nav-controls">
-            <button class="showcase-nav-btn" id="showcase-prev-btn" aria-label="Previous Product">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
-            </button>
-            <button class="showcase-nav-btn" id="showcase-next-btn" aria-label="Next Product">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
-            </button>
-          </div>
-        </div>
-
-        <!-- Split Grid: Product Details & 3D Interactive Stage -->
-        <div class="showcase-split-grid">
-          <!-- Left Info Pane -->
-          <div class="showcase-info-pane">
-            <span class="showcase-cat-badge" id="showcase-cat-badge">Artisanal Pint</span>
-            <h3 class="showcase-prod-title" id="showcase-title">Belgian Chocolate Truffle</h3>
-            <p class="showcase-prod-desc" id="showcase-desc">Single-origin 72% dark cocoa ribbons folded into velvet gelato, finished with handmade chocolate truffles and rich cocoa dust.</p>
-            
-            <div class="showcase-chips-row" id="showcase-chips">
-              <span class="showcase-chip">72% Belgian Couverture</span>
-              <span class="showcase-chip">Jersey Butterfat</span>
-              <span class="showcase-chip">Dark Cocoa Truffles</span>
-            </div>
-
-            <div class="showcase-footer-row">
-              <span class="card-pure-badge" style="font-size: 0.88rem; padding: 6px 16px;">100% Real Farm Milk</span>
-              <span class="showcase-size-spec" id="showcase-size" style="font-size: 0.82rem; font-weight: 600; opacity: 0.75;">500ml Gourmet Pint</span>
+        <div class="cs-cards-viewport" id="coverflow-stage-viewport">
+          <!-- Left Preview Card -->
+          <div class="cs-card cs-card-preview-left" id="card-left-preview">
+            <div class="cs-preview-img-box">
+              <img id="card-left-img" src="assets/images/products/chocolate-celebration-cake.png" alt="Previous Creation">
             </div>
           </div>
 
-          <!-- Right 3D Interactive Stage -->
-          <div class="showcase-stage-pane" id="stage-360">
-            <div class="showcase-ambient-glow" id="showcase-glow"></div>
-            <div class="showcase-stage-disc"></div>
-            <div class="specular-glow" id="specular-glow"></div>
-
-            <!-- 3D Rotating Anchor -->
-            <div class="rotator-3d-wrap" id="rotator-3d-wrap">
-              <img id="product-360-img" src="assets/images/products/belgian-chocolate-tub.png" alt="Belgian Chocolate Truffle 360" class="product-360-visual" draggable="false">
-              <div class="rotator-shadow" id="rotator-shadow"></div>
-            </div>
-
-            <!-- Custom Cursor Pointer Animation -->
-            <div class="choco-cursor-tracker" id="choco-cursor-tracker">
-              <div class="tracker-ring"></div>
-              <div class="tracker-core">
-                <span class="tracker-arrow-left">◂</span>
-                <span class="tracker-icon">360°</span>
-                <span class="tracker-arrow-right">▸</span>
+          <!-- Center Hero Active Card -->
+          <div class="cs-card cs-card-hero-center" id="card-center-hero">
+            <!-- 3D Multi-Layer Orbit System (Glitch-Free 3D Planes) -->
+            <div class="cs-orbit-wrap" id="hero-orbit-wrap">
+              <div class="cs-particle-1">
+                <img id="orbit-icon-1" src="assets/images/particles/particle-vanilla-orchid.png" alt="Revolving Ingredient 1">
               </div>
-              <div class="tracker-ripple"></div>
+              <div class="cs-particle-2">
+                <img id="orbit-icon-2" src="assets/images/particles/particle-cocoa-bean.png" alt="Revolving Ingredient 2">
+              </div>
+              <div class="cs-particle-3">
+                <img id="orbit-icon-3" src="assets/images/particles/particle-vanilla-orchid.png" alt="Revolving Ingredient 3">
+              </div>
+              <div class="cs-particle-4">
+                <img id="orbit-icon-4" src="assets/images/particles/particle-chocolate-chunk.png" alt="Revolving Ingredient 4">
+              </div>
+              <div class="cs-particle-5">
+                <img id="orbit-icon-5" src="assets/images/particles/particle-almond.png" alt="Revolving Ingredient 5">
+              </div>
+            </div>
+
+            <!-- Product Box with Mouse Parallax -->
+            <div class="cs-tilt-box" id="tilt-product-box">
+              <img class="cs-hero-img" id="card-hero-img" src="assets/images/products/french-vanilla-splash-tub.png" alt="French Vanilla Royale" draggable="false">
+            </div>
+
+            <!-- Pedestal Ground Lighting -->
+            <div class="cs-pedestal-ground">
+              <div class="cs-pedestal-glow" id="pedestal-glow" style="background: radial-gradient(ellipse at center, rgba(229, 195, 120, 0.75) 0%, rgba(229, 195, 120, 0.15) 50%, transparent 75%);"></div>
+            </div>
+          </div>
+
+          <!-- Right Preview Card -->
+          <div class="cs-card cs-card-preview-right" id="card-right-preview">
+            <div class="cs-preview-img-box">
+              <img id="card-right-img" src="assets/images/products/belgian-chocolate-splash-tub.png" alt="Next Creation">
             </div>
           </div>
         </div>
+      </div>
 
-        <!-- Slider Dots Bar -->
-        <div class="showcase-dots-bar" id="showcase-dots-bar">
-          <button class="showcase-dot-btn active" data-index="0" aria-label="Slide 1"></button>
-          <button class="showcase-dot-btn" data-index="1" aria-label="Slide 2"></button>
-          <button class="showcase-dot-btn" data-index="2" aria-label="Slide 3"></button>
-          <button class="showcase-dot-btn" data-index="3" aria-label="Slide 4"></button>
-          <button class="showcase-dot-btn" data-index="4" aria-label="Slide 5"></button>
-          <button class="showcase-dot-btn" data-index="5" aria-label="Slide 6"></button>
+      <!-- Bottom Product Details Area -->
+      <div class="cs-details-box">
+        <div class="cs-details-info">
+          <div class="cs-meta-top">
+            <span class="cs-category-tag" id="detail-category-tag">01 // ARTISANAL PINT</span>
+            <span style="opacity: 0.4;">•</span>
+            <span class="cs-composition" id="detail-composition">Madagascar Bourbon Vanilla • 16% Jersey Cream • Zero Gums</span>
+          </div>
+          <h3 class="cs-prod-name" id="detail-title">French Vanilla Royale</h3>
+          <div class="cs-chips-row" id="detail-notes-chips">
+            <span class="cs-chip">🌿 Bourbon Vanilla</span>
+            <span class="cs-chip">🥛 16% Jersey Butterfat</span>
+            <span class="cs-chip">🍦 Slow Batch Churned</span>
+          </div>
         </div>
       </div>
     </div>
@@ -306,10 +424,10 @@
           <h2 class="pints-slider-title">Fresh Churned Treats</h2>
         </div>
         <div class="slider-arrows-wrap">
-          <button class="slider-arrow-btn prev-arrow" id="pints-arrow-prev" onclick="if(window.scrollPintsSlider) window.scrollPintsSlider(-1)" aria-label="Previous Products">
+          <button class="slider-arrow-btn prev-arrow" id="pints-arrow-prev" onclick="if(window.scrollPintsSlider) window.scrollPintsSlider(-1);" aria-label="Previous Creations">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
           </button>
-          <button class="slider-arrow-btn next-arrow" id="pints-arrow-next" onclick="if(window.scrollPintsSlider) window.scrollPintsSlider(1)" aria-label="Next Products">
+          <button class="slider-arrow-btn next-arrow" id="pints-arrow-next" onclick="if(window.scrollPintsSlider) window.scrollPintsSlider(1);" aria-label="Next Creations">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
           </button>
         </div>
@@ -317,151 +435,187 @@
 
       <div class="pints-track-viewport" id="pints-viewport">
         <div class="pints-cards-track" id="pints-track">
-                      <div class="pints-pop-card">
+                      <div class="pints-pop-card" data-product-id="french-vanilla">
+              <!-- Card Top Header -->
+              <div class="card-pop-top-row">
+                <span class="card-pop-pill-tag" style="background: #FDF6E2; color: #A67C1E;">
+                  GRAND CRU RESERVE                </span>
+                <span class="card-pop-num">01</span>
+              </div>
+
+              <!-- Centered Product Visual -->
               <div class="card-tub-popout">
-                <img src="assets/images/products/belgian-chocolate-tub.png" alt="Belgian Chocolate Truffle" loading="lazy">
+                <img src="assets/images/products/french-vanilla-splash-tub.png" alt="French Vanilla Royale" loading="eager" decoding="async">
               </div>
 
-              <span class="card-meta-category">Gourmet Pint • 500 ml Pint</span>
-              <h3 class="card-pop-title">Belgian Chocolate Truffle</h3>
-              <p class="card-pop-desc">Rich 72% dark Belgian cocoa ribbons folded into velvet chocolate gelato, crowned with crisp hand-curled dark chocolate shavings.</p>
+              <!-- Origin / Category Kicker -->
+              <span class="card-meta-origin">500ML SPLASH TUB • MADAGASCAR & FRANCE</span>
 
-              <div class="card-foot-action-row" style="justify-content: center;">
-                <span class="card-pure-badge" style="width: 100%; text-align: center;">100% Real Farm Milk</span>
-              </div>
-            </div>
-                      <div class="pints-pop-card">
-              <div class="card-tub-popout">
-                <img src="assets/images/products/french-vanilla-tub.png" alt="French Vanilla Royale" loading="lazy">
-              </div>
-
-              <span class="card-meta-category">Gourmet Pint • 500 ml Pint</span>
+              <!-- Elegant Serif Title -->
               <h3 class="card-pop-title">French Vanilla Royale</h3>
+
+              <!-- Description Section (Replaces the price section) -->
               <p class="card-pop-desc">Double-creamed farm milk steeped with aromatic Madagascar Bourbon vanilla pods and hand-scraped vanilla seeds for the ultimate silky comfort.</p>
-
-              <div class="card-foot-action-row" style="justify-content: center;">
-                <span class="card-pure-badge" style="width: 100%; text-align: center;">100% Real Farm Milk</span>
-              </div>
             </div>
-                      <div class="pints-pop-card">
-              <div class="card-tub-popout">
-                <img src="assets/images/products/mint-pistachio-tub.png" alt="Mint Pistachio Crunch" loading="lazy">
+                      <div class="pints-pop-card" data-product-id="belgian-chocolate">
+              <!-- Card Top Header -->
+              <div class="card-pop-top-row">
+                <span class="card-pop-pill-tag" style="background: #F5ECE8; color: #7A5243;">
+                  MASTER RESERVE                </span>
+                <span class="card-pop-num">02</span>
               </div>
 
-              <span class="card-meta-category">Gourmet Pint • 500 ml Pint</span>
+              <!-- Centered Product Visual -->
+              <div class="card-tub-popout">
+                <img src="assets/images/products/belgian-chocolate-splash-tub.png" alt="Belgian Chocolate" loading="eager" decoding="async">
+              </div>
+
+              <!-- Origin / Category Kicker -->
+              <span class="card-meta-origin">500ML SPLASH TUB • BRUSSELS, BELGIUM</span>
+
+              <!-- Elegant Serif Title -->
+              <h3 class="card-pop-title">Belgian Chocolate</h3>
+
+              <!-- Description Section (Replaces the price section) -->
+              <p class="card-pop-desc">Single-origin 72% dark Belgian cocoa ribbons folded into velvet chocolate gelato, crowned with crisp hand-curled dark chocolate shavings.</p>
+            </div>
+                      <div class="pints-pop-card" data-product-id="mint-pistachio">
+              <!-- Card Top Header -->
+              <div class="card-pop-top-row">
+                <span class="card-pop-pill-tag" style="background: #E6F5ED; color: #2E7D52;">
+                  CHEF'S SIGNATURE                </span>
+                <span class="card-pop-num">03</span>
+              </div>
+
+              <!-- Centered Product Visual -->
+              <div class="card-tub-popout">
+                <img src="assets/images/products/mint-pistachio-splash-tub.png" alt="Mint Pistachio Crunch" loading="eager" decoding="async">
+              </div>
+
+              <!-- Origin / Category Kicker -->
+              <span class="card-meta-origin">500ML SPLASH TUB • BRONTE, SICILY</span>
+
+              <!-- Elegant Serif Title -->
               <h3 class="card-pop-title">Mint Pistachio Crunch</h3>
+
+              <!-- Description Section (Replaces the price section) -->
               <p class="card-pop-desc">Fresh garden spearmint infused into double-creamed milk, folded with roasted California pistachios and dark chocolate chips.</p>
-
-              <div class="card-foot-action-row" style="justify-content: center;">
-                <span class="card-pure-badge" style="width: 100%; text-align: center;">100% Real Farm Milk</span>
-              </div>
             </div>
-                      <div class="pints-pop-card">
+                      <div class="pints-pop-card" data-product-id="almond-crunch">
+              <!-- Card Top Header -->
+              <div class="card-pop-top-row">
+                <span class="card-pop-pill-tag" style="background: #F6EFE6; color: #8C5627;">
+                  ARTISANAL CRUNCH                </span>
+                <span class="card-pop-num">04</span>
+              </div>
+
+              <!-- Centered Product Visual -->
               <div class="card-tub-popout">
-                <img src="assets/images/live/golden-f.webp" alt="Golden Fantasy Swirl Cone" loading="lazy">
+                <img src="assets/images/products/almond-crunch-bar.png" alt="Almond Crunch Bar" loading="eager" decoding="async">
               </div>
 
-              <span class="card-meta-category">Gourmet Cone • 120 ml Waffle Cone</span>
-              <h3 class="card-pop-title">Golden Fantasy Swirl Cone</h3>
-              <p class="card-pop-desc">Split of two flavour vanilla and chocolate in crunchy wafer coated with chocolate along with roasted peanuts surpringly divine taste.</p>
+              <!-- Origin / Category Kicker -->
+              <span class="card-meta-origin">90ML GOURMET BAR • CALIFORNIA PRALINE</span>
 
-              <div class="card-foot-action-row" style="justify-content: center;">
-                <span class="card-pure-badge" style="width: 100%; text-align: center;">100% Real Farm Milk</span>
-              </div>
-            </div>
-                      <div class="pints-pop-card">
-              <div class="card-tub-popout">
-                <img src="assets/images/live/boom-c.webp" alt="Choco Boom Cone" loading="lazy">
-              </div>
+              <!-- Elegant Serif Title -->
+              <h3 class="card-pop-title">Almond Crunch Bar</h3>
 
-              <span class="card-meta-category">Gourmet Cone • 120 ml Waffle Cone</span>
-              <h3 class="card-pop-title">Choco Boom Cone</h3>
-              <p class="card-pop-desc">Chocolate ice cream filled in crunchy wafer coated with chocolate along with crispy roasted peanuts that give distinctive taste to your mood pleasure.</p>
-
-              <div class="card-foot-action-row" style="justify-content: center;">
-                <span class="card-pure-badge" style="width: 100%; text-align: center;">100% Real Farm Milk</span>
-              </div>
-            </div>
-                      <div class="pints-pop-card">
-              <div class="card-tub-popout">
-                <img src="assets/images/live/twist-x.webp" alt="Super Twist Raspberry Cone" loading="lazy">
-              </div>
-
-              <span class="card-meta-category">Gourmet Cone • 120 ml Waffle Cone</span>
-              <h3 class="card-pop-title">Super Twist Raspberry Cone</h3>
-              <p class="card-pop-desc">Vanilla Ice cream centered Raspberry sauce filled in crunchy wafer coated chocolate, won the soul and taste bud of ice cream lover.</p>
-
-              <div class="card-foot-action-row" style="justify-content: center;">
-                <span class="card-pure-badge" style="width: 100%; text-align: center;">100% Real Farm Milk</span>
-              </div>
-            </div>
-                      <div class="pints-pop-card">
-              <div class="card-tub-popout">
-                <img src="assets/images/products/almond-crunch-bar.png" alt="Almond Crunch Praline Bar" loading="lazy">
-              </div>
-
-              <span class="card-meta-category">Artisanal Bar • 90 ml Gourmet Bar</span>
-              <h3 class="card-pop-title">Almond Crunch Praline Bar</h3>
+              <!-- Description Section (Replaces the price section) -->
               <p class="card-pop-desc">Thick roasted California almond praline shell crackles open to reveal dense, slow-churned pure milk ice cream on a natural beechwood stick.</p>
-
-              <div class="card-foot-action-row" style="justify-content: center;">
-                <span class="card-pure-badge" style="width: 100%; text-align: center;">100% Real Farm Milk</span>
-              </div>
             </div>
-                      <div class="pints-pop-card">
+                      <div class="pints-pop-card" data-product-id="golden-fantasy">
+              <!-- Card Top Header -->
+              <div class="card-pop-top-row">
+                <span class="card-pop-pill-tag" style="background: #FCF6E8; color: #9A6F20;">
+                  ICONIC HERITAGE                </span>
+                <span class="card-pop-num">05</span>
+              </div>
+
+              <!-- Centered Product Visual -->
               <div class="card-tub-popout">
-                <img src="assets/images/live/round.webp" alt="Round Pie Cookie Sandwich" loading="lazy">
+                <img src="assets/images/products/golden-fantasy.png" alt="Golden Fantasy Swirl" loading="eager" decoding="async">
               </div>
 
-              <span class="card-meta-category">Sandwich • 95 ml Sandwich</span>
-              <h3 class="card-pop-title">Round Pie Cookie Sandwich</h3>
-              <p class="card-pop-desc">Imaginative creation perfectly round vanilla ice cream with premium cookies coated with chocolate.</p>
+              <!-- Origin / Category Kicker -->
+              <span class="card-meta-origin">120ML WAFFLE CONE • TASHKENT SINCE 1996</span>
 
-              <div class="card-foot-action-row" style="justify-content: center;">
-                <span class="card-pure-badge" style="width: 100%; text-align: center;">100% Real Farm Milk</span>
-              </div>
+              <!-- Elegant Serif Title -->
+              <h3 class="card-pop-title">Golden Fantasy Swirl</h3>
+
+              <!-- Description Section (Replaces the price section) -->
+              <p class="card-pop-desc">Dual swirl vanilla and chocolate in crunchy waffle wafer coated with chocolate along with roasted golden peanuts.</p>
             </div>
-                      <div class="pints-pop-card">
-              <div class="card-tub-popout">
-                <img src="assets/images/live/sandwich.webp" alt="Sandwich Biscuit Duo" loading="lazy">
+                      <div class="pints-pop-card" data-product-id="celebration-cake">
+              <!-- Card Top Header -->
+              <div class="card-pop-top-row">
+                <span class="card-pop-pill-tag" style="background: #FCEEF1; color: #A02848;">
+                  ROYAL JUBILEE                </span>
+                <span class="card-pop-num">06</span>
               </div>
 
-              <span class="card-meta-category">Biscuit • 100 ml Sandwich</span>
+              <!-- Centered Product Visual -->
+              <div class="card-tub-popout">
+                <img src="assets/images/products/chocolate-celebration-cake.png" alt="Celebration Gâteau" loading="eager" decoding="async">
+              </div>
+
+              <!-- Origin / Category Kicker -->
+              <span class="card-meta-origin">1000ML GOURMET CAKE • 3-LAYER SPECIALTY</span>
+
+              <!-- Elegant Serif Title -->
+              <h3 class="card-pop-title">Celebration Gâteau</h3>
+
+              <!-- Description Section (Replaces the price section) -->
+              <p class="card-pop-desc">Triple-layer artisanal gelato torte layered with dark chocolate truffles, strawberry coulis, and pistachio praline.</p>
+            </div>
+                      <div class="pints-pop-card" data-product-id="sandwich">
+              <!-- Card Top Header -->
+              <div class="card-pop-top-row">
+                <span class="card-pop-pill-tag" style="background: #FDF6E2; color: #A67C1E;">
+                  Irresistible Treat                </span>
+                <span class="card-pop-num">07</span>
+              </div>
+
+              <!-- Centered Product Visual -->
+              <div class="card-tub-popout">
+                <img src="assets/images/live/sandwich.webp" alt="Sandwich Biscuit Duo" loading="eager" decoding="async">
+              </div>
+
+              <!-- Origin / Category Kicker -->
+              <span class="card-meta-origin">Biscuit • 100 ml Sandwich</span>
+
+              <!-- Elegant Serif Title -->
               <h3 class="card-pop-title">Sandwich Biscuit Duo</h3>
+
+              <!-- Description Section (Replaces the price section) -->
               <p class="card-pop-desc">Vanilla and chocolate ice cream half sandwiched between crunchy biscuit and half dipped in chocolate with roasted peanuts, irresistible taste and delicious treat on go.</p>
-
-              <div class="card-foot-action-row" style="justify-content: center;">
-                <span class="card-pure-badge" style="width: 100%; text-align: center;">100% Real Farm Milk</span>
-              </div>
             </div>
-                      <div class="pints-pop-card">
-              <div class="card-tub-popout">
-                <img src="assets/images/live/bera-n.webp" alt="Vega Crunchy Choco Bar" loading="lazy">
+                      <div class="pints-pop-card" data-product-id="vega-bar">
+              <!-- Card Top Header -->
+              <div class="card-pop-top-row">
+                <span class="card-pop-pill-tag" style="background: #FDF6E2; color: #A67C1E;">
+                  Luscious Crunch                </span>
+                <span class="card-pop-num">08</span>
               </div>
 
-              <span class="card-meta-category">Sticks • 90 ml Gourmet Stick</span>
+              <!-- Centered Product Visual -->
+              <div class="card-tub-popout">
+                <img src="assets/images/live/bera-n.webp" alt="Vega Crunchy Choco Bar" loading="eager" decoding="async">
+              </div>
+
+              <!-- Origin / Category Kicker -->
+              <span class="card-meta-origin">Sticks • 90 ml Gourmet Stick</span>
+
+              <!-- Elegant Serif Title -->
               <h3 class="card-pop-title">Vega Crunchy Choco Bar</h3>
+
+              <!-- Description Section (Replaces the price section) -->
               <p class="card-pop-desc">Delicious Vanilla flavoured premium ice cream coated with luscious crunchy chocolate along with crispy roasted peanuts on a stick.</p>
-
-              <div class="card-foot-action-row" style="justify-content: center;">
-                <span class="card-pure-badge" style="width: 100%; text-align: center;">100% Real Farm Milk</span>
-              </div>
-            </div>
-                      <div class="pints-pop-card">
-              <div class="card-tub-popout">
-                <img src="assets/images/products/chocolate-celebration-cake.png" alt="Triple-Layer Gateau Cake" loading="lazy">
-              </div>
-
-              <span class="card-meta-category">Ice Cream Cake • 1.0 kg Gateau (Serves 8-10)</span>
-              <h3 class="card-pop-title">Triple-Layer Gateau Cake</h3>
-              <p class="card-pop-desc">Architectural trio of Belgian dark chocolate, white vanilla cream, and milk chocolate sponge, glazed in dark ganache drip, fresh strawberries, and gold accents.</p>
-
-              <div class="card-foot-action-row" style="justify-content: center;">
-                <span class="card-pure-badge" style="width: 100%; text-align: center;">100% Real Farm Milk</span>
-              </div>
             </div>
                   </div>
       </div>
+
+      <!-- Pagination Dots Bar -->
+      <div class="pints-dots-bar" id="pints-dots-bar"></div>
     </div>
   </section>
 
@@ -1298,6 +1452,18 @@
               </div>
             </div>
                         </div>
+
+      <!-- View More Treats Button -->
+      <div class="catalog-load-more-wrap" id="catalog-load-more-wrap">
+        <button type="button" class="btn-catalog-load-more" id="btn-catalog-load-more" aria-label="View more products">
+          <span class="btn-catalog-load-more-text">View More</span>
+          <span class="btn-catalog-load-more-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 9l6 6 6-6"/>
+            </svg>
+          </span>
+        </button>
+      </div>
     </div>
   </section>
 
@@ -1444,10 +1610,6 @@
       <div class="heritage-split-story-card reverse-layout">
         <div class="heritage-img-column">
           <img src="assets/images/live/developments.webp" alt="Dairy Classic Recent Developments Plant" loading="lazy">
-          <div class="capacity-stat-badge">
-            <span class="stat-number">80,000L</span>
-            <span class="stat-label">Daily Capacity</span>
-          </div>
         </div>
         <div class="heritage-text-column">
           <span class="kicker-pink">MODERNIZATION &amp; GROWTH</span>
@@ -1522,11 +1684,11 @@
         <div class="video-craft-text">
           <div class="video-badge-pill">
             <span class="v-dot"></span>
-            <span>SINCE 1996 • 3D CHURNING PROCESS</span>
+            <span>SINCE 1996 • ARTISANAL CHURNING</span>
           </div>
           <h2 class="video-craft-heading">
             Pure Cream in Motion. <br>
-            <span>Slow-Churned 3D Craft.</span>
+            <span>Slow-Churned Artisanal Craft.</span>
           </h2>
           <p class="video-craft-desc">
             Experience the authentic swirl of Dairy Classic. We cold-churn single-origin farm milk with zero artificial overrun, capturing rich density that melts luxuriously on the tongue.
@@ -1549,7 +1711,7 @@
 
           <div class="v-action-row">
             <a href="#spin360" class="btn-video-explore">
-              <span>Spin in 360° 3D</span>
+              <span>Explore Signature Treats</span>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
           </div>
@@ -1565,7 +1727,7 @@
             
             <div class="video-overlay-badge">
               <span class="v-pulse-dot"></span>
-              <span>Official Dairy Classic 3D Video</span>
+              <span>Watch Our Craft in Action</span>
             </div>
 
             <div class="video-player-controls">
@@ -1633,26 +1795,55 @@
   </section>
 
   <!-- ========================================================
-       SECTION 8: UZBEKISTAN'S FAVORITE ICE CREAM (Live Website Section)
+       SECTION 8: HERITAGE & DELIGHT
        ======================================================== -->
   <section class="section-heritage" id="uzbekistan-favorite" style="padding-top: 20px;">
     <div class="container">
       <div class="heritage-split-grid">
         <div class="heritage-text-col">
-          <span class="heritage-badge">LOCAL PRIDE &amp; TRADITION</span>
-          <h2 class="heritage-main-title">Uzbekistan's Favorite Ice Cream</h2>
+          <span class="heritage-badge">TIMELESS HERITAGE &amp; TASTE</span>
+          <h2 class="heritage-main-title">Crafting Smiles, One Scoop at a Time</h2>
           <p class="heritage-desc">
             Bringing smiles with every scoop, one indulgence at a time. From nostalgic classics to exciting new treats, we have it all. A world of flavor, crafted for pure happiness. Dive into delight today!
           </p>
           <div class="heritage-actions-row">
             <a href="#about-heritage" class="btn-heritage-primary">About Us</a>
-            <a href="#stores" class="btn-heritage-secondary">Find a Parlour</a>
+            <a href="#contact-us" class="btn-heritage-secondary">Contact Us</a>
           </div>
         </div>
 
-        <div class="heritage-visual-wrap">
-          <img src="assets/images/3d-elements/waffle-cone-scoop.jpg" alt="Uzbekistan Favorite Ice Cream Since 1996" loading="lazy">
-          <div class="heritage-stamp">PRIDE OF UZBEKISTAN</div>
+        <div class="heritage-cone-stage" id="heritage-cone-stage" data-flavor="mango" data-product-id="alphonso-mango-cone">
+          <div class="heritage-cone-halo" aria-hidden="true"></div>
+          
+          <!-- Ambient Floating Mango Splash Decor -->
+          <div class="heritage-orbit-particles" aria-hidden="true">
+            <span class="h-particle h-p1">✨</span>
+            <span class="h-particle h-p2">🥭</span>
+            <span class="h-particle h-p3">✦</span>
+            <span class="h-particle h-p4">🌿</span>
+          </div>
+
+          <!-- 3D Interactive Tilt & Levitation Product Box -->
+          <div class="heritage-cone-tilt-box" id="heritage-cone-tilt">
+            <img src="assets/images/products/alphonso-mango-cone-splash.png" 
+                 alt="Dairy Classic Alphonso Mango Gourmet Cone" 
+                 class="heritage-floating-cone-img" 
+                 id="heritage-cone-img" 
+                 loading="lazy">
+          </div>
+
+          <!-- Dynamic Soft Floor Shadow with Synchronized Breathing Animation -->
+          <div class="heritage-cone-shadow" aria-hidden="true"></div>
+
+          <!-- Glassmorphism Floating Heritage Badge Stamp -->
+          <div class="heritage-stamp-floating">
+            <div class="stamp-badge-glow"></div>
+            <span class="stamp-icon">✨</span>
+            <div class="stamp-text-group">
+              <strong>Alphonso Gold Reserve</strong>
+              <span>100% Real Farm Milk &bull; Artisanal Waffle Cone</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -1673,7 +1864,7 @@
     </div>
 
     <div class="container">
-      <div class="recipes-card">
+      <div class="recipes-split-grid">
         <div class="recipes-info-col">
           <span class="recipe-badge">SIGNATURE RECIPE</span>
           <h2 class="recipe-title">Creamica Milkshake</h2>
@@ -1695,8 +1886,35 @@
           </div>
         </div>
 
-        <div class="recipe-img-box">
-          <img src="assets/images/products/french-vanilla-splash-tub.png" alt="Creamica Milkshake Glass" loading="lazy">
+        <div class="recipe-fan-stage" id="recipe-fan-stage">
+          <!-- Orbiting Multi-Flavor Particle Sparks -->
+          <div class="recipe-fan-particles" aria-hidden="true">
+            <span class="rf-particle rf-p1">🍓</span>
+            <span class="rf-particle rf-p2">🍫</span>
+            <span class="rf-particle rf-p3">✨</span>
+            <span class="rf-particle rf-p4">🍮</span>
+          </div>
+
+          <!-- 3D Perspective Levitation Wrapper -->
+          <div class="recipe-fan-3d-wrapper" id="recipe-fan-wrapper">
+            <!-- Continuous 3D Fan Rotor (Blade-Spinning Trio Splash) -->
+            <div class="recipe-fan-rotor" id="recipe-fan-rotor">
+              <img src="assets/images/products/trio-scoop-splash-3d.png" 
+                   alt="Dairy Classic Trio Gourmet Scoops Splash 3D Fan" 
+                   class="recipe-fan-img" 
+                   id="recipe-fan-img" 
+                   loading="lazy">
+            </div>
+          </div>
+
+          <!-- Dynamic Soft Floor Shadow -->
+          <div class="recipe-fan-shadow" aria-hidden="true"></div>
+          
+          <!-- Floating Heritage Feature Pill -->
+          <div class="recipe-fan-badge">
+            <span class="badge-icon">✦</span>
+            <span>Tri-Flavor 3D Symphony</span>
+          </div>
         </div>
       </div>
     </div>
@@ -1838,7 +2056,13 @@
                   1.4k                </span>
               </div>
             </div>
-            <p class="insta-caption">Pure creamy happiness in every Golden Fantasy bite ✨ #DairyClassic #Uzbekistan</p>
+            <div class="insta-card-info">
+              <p class="insta-caption">Pure creamy happiness in every Golden Fantasy bite ✨</p>
+              <div class="insta-sub-row">
+                <span class="insta-tag-pill">#DairyClassic</span>
+                <span class="insta-likes-pill">❤️ 1.4k</span>
+              </div>
+            </div>
           </a>
                   <a href="https://www.instagram.com/dairyclassic.uz/" target="_blank" rel="noopener noreferrer" class="insta-card">
             <div class="insta-img-wrap">
@@ -1852,7 +2076,13 @@
                   2.1k                </span>
               </div>
             </div>
-            <p class="insta-caption">Vega Bar loaded with crispy roasted peanuts &amp; rich chocolate coating 🥜🍫</p>
+            <div class="insta-card-info">
+              <p class="insta-caption">Vega Bar loaded with crispy roasted peanuts &amp; chocolate 🥜🍫</p>
+              <div class="insta-sub-row">
+                <span class="insta-tag-pill">#DairyClassic</span>
+                <span class="insta-likes-pill">❤️ 2.1k</span>
+              </div>
+            </div>
           </a>
                   <a href="https://www.instagram.com/dairyclassic.uz/" target="_blank" rel="noopener noreferrer" class="insta-card">
             <div class="insta-img-wrap">
@@ -1866,7 +2096,13 @@
                   1.8k                </span>
               </div>
             </div>
-            <p class="insta-caption">Creamica Cheese Cake – rich blueberry indulgence in a cup 🫐🍨</p>
+            <div class="insta-card-info">
+              <p class="insta-caption">Creamica Cheese Cake – rich blueberry indulgence 🫐🍨</p>
+              <div class="insta-sub-row">
+                <span class="insta-tag-pill">#DairyClassic</span>
+                <span class="insta-likes-pill">❤️ 1.8k</span>
+              </div>
+            </div>
           </a>
                   <a href="https://www.instagram.com/dairyclassic.uz/" target="_blank" rel="noopener noreferrer" class="insta-card">
             <div class="insta-img-wrap">
@@ -1880,7 +2116,13 @@
                   3.2k                </span>
               </div>
             </div>
-            <p class="insta-caption">Bringing sweet moments closer across Uzbekistan since 1996 🇺🇿❤️</p>
+            <div class="insta-card-info">
+              <p class="insta-caption">Bringing sweet moments closer since 1996 🇺🇿❤️</p>
+              <div class="insta-sub-row">
+                <span class="insta-tag-pill">#DairyClassic</span>
+                <span class="insta-likes-pill">❤️ 3.2k</span>
+              </div>
+            </div>
           </a>
                   <a href="https://www.instagram.com/dairyclassic.uz/" target="_blank" rel="noopener noreferrer" class="insta-card">
             <div class="insta-img-wrap">
@@ -1894,7 +2136,13 @@
                   2.5k                </span>
               </div>
             </div>
-            <p class="insta-caption">Rich Belgian chocolate ribbons and real slow-churned farm milk 🍫🥛</p>
+            <div class="insta-card-info">
+              <p class="insta-caption">Rich Belgian chocolate ribbons and farm-fresh milk 🍫🥛</p>
+              <div class="insta-sub-row">
+                <span class="insta-tag-pill">#DairyClassic</span>
+                <span class="insta-likes-pill">❤️ 2.5k</span>
+              </div>
+            </div>
           </a>
                   <a href="https://www.instagram.com/dairyclassic.uz/" target="_blank" rel="noopener noreferrer" class="insta-card">
             <div class="insta-img-wrap">
@@ -1908,7 +2156,13 @@
                   1.9k                </span>
               </div>
             </div>
-            <p class="insta-caption">Sandwich biscuits &amp; crunchy wafer cones ready for the weekend celebration! 🎉</p>
+            <div class="insta-card-info">
+              <p class="insta-caption">Sandwich biscuits &amp; wafer cones for celebrations! 🎉</p>
+              <div class="insta-sub-row">
+                <span class="insta-tag-pill">#DairyClassic</span>
+                <span class="insta-likes-pill">❤️ 1.9k</span>
+              </div>
+            </div>
           </a>
               </div>
 
@@ -2079,93 +2333,6 @@
     </div>
   </section>
 
-  <!-- ========================================================
-       SECTION 11: PARLOUR & FACTORY NETWORK (Uzbekistan Locations)
-       ======================================================== -->
-  <section class="art-section" id="stores">
-    <div class="container">
-      <div class="art-stores-grid">
-        <!-- Parlours Column -->
-        <div class="art-stores-col">
-          <span class="art-kicker">OFFICIAL DESTINATIONS</span>
-          <h3 class="art-sub-heading">Experience Centers</h3>
-
-          <div class="art-city-chips">
-            <button class="city-tab-btn active" data-city="all">All</button>
-            <button class="city-tab-btn" data-city="Tashkent">Tashkent</button>
-            <button class="city-tab-btn" data-city="Samarkand">Samarkand</button>
-            <button class="city-tab-btn" data-city="Bukhara">Bukhara</button>
-          </div>
-
-          <div class="art-store-list">
-                          <div class="art-store-item" data-city="Tashkent">
-                <div class="store-top">
-                  <strong>Factory Location (БУТ 5)</strong>
-                  <span class="store-pill">Factory & Experience Center</span>
-                </div>
-                <p class="store-addr">БУТ 5, 65M6+H9 Tashkent, Uzbekistan</p>
-                <div class="store-foot">
-                  <span>09:00 AM – 08:00 PM (Mon-Sat) • +99878 120 33 77 / +998 90 998 2019</span>
-                  <a href="https://maps.google.com/?q=%D0%91%D0%A3%D0%A2+5%2C+65M6%2BH9+Tashkent%2C+Uzbekistan" target="_blank" class="store-link">Directions ↗</a>
-                </div>
-              </div>
-                          <div class="art-store-item" data-city="Tashkent">
-                <div class="store-top">
-                  <strong>Central Tashkent Parlour</strong>
-                  <span class="store-pill">Open Today</span>
-                </div>
-                <p class="store-addr">Amir Timur Avenue, Tashkent, Uzbekistan</p>
-                <div class="store-foot">
-                  <span>10:00 AM – 10:00 PM • +998 90 992 2999</span>
-                  <a href="https://maps.google.com/?q=Amir+Timur+Avenue%2C+Tashkent%2C+Uzbekistan" target="_blank" class="store-link">Directions ↗</a>
-                </div>
-              </div>
-                          <div class="art-store-item" data-city="Samarkand">
-                <div class="store-top">
-                  <strong>Samarkand Regional Office & Parlour</strong>
-                  <span class="store-pill">Regional Destination</span>
-                </div>
-                <p class="store-addr">Registan Boulevard, Samarkand, Uzbekistan</p>
-                <div class="store-foot">
-                  <span>09:30 AM – 09:00 PM • +998 90 502 9292</span>
-                  <a href="https://maps.google.com/?q=Registan+Boulevard%2C+Samarkand%2C+Uzbekistan" target="_blank" class="store-link">Directions ↗</a>
-                </div>
-              </div>
-                          <div class="art-store-item" data-city="Bukhara">
-                <div class="store-top">
-                  <strong>Old Town Heritage Parlour</strong>
-                  <span class="store-pill">Artisanal Kiosk</span>
-                </div>
-                <p class="store-addr">Lyabi-Hauz Square, Bukhara, Uzbekistan</p>
-                <div class="store-foot">
-                  <span>10:00 AM – 08:30 PM • +99878 120 33 78</span>
-                  <a href="https://maps.google.com/?q=Lyabi-Hauz+Square%2C+Bukhara%2C+Uzbekistan" target="_blank" class="store-link">Directions ↗</a>
-                </div>
-              </div>
-                      </div>
-        </div>
-
-        <!-- Reviews Column -->
-        <div class="art-reviews-col">
-          <span class="art-kicker">VERIFIED HERITAGE</span>
-          <h3 class="art-sub-heading">What Customers Say</h3>
-
-          <div class="art-review-box">
-            <div class="art-stars">★★★★★</div>
-            <p class="art-quote">“The Golden Fantasy cone and Belgian Truffle pint are absolute perfection. No artificial oily aftertaste, just pure cream that melts beautifully.”</p>
-            <span class="art-author">— Alisher K., Tashkent</span>
-          </div>
-
-          <div class="art-review-box">
-            <div class="art-stars">★★★★★</div>
-            <p class="art-quote">“Dairy Classic has been a family favorite since childhood in 1996. The new cones and Vega bars have raised the standard even higher!”</p>
-            <span class="art-author">— Nilufar R., Samarkand</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- Scroll-Driven Flight Animation Proxy (Hero to 3D Showcase) -->
   <div id="flight-proxy-tub" aria-hidden="true">
     <img id="flight-proxy-img" src="assets/images/products/french-vanilla-splash-tub.png" alt="Flying Ice Cream Tub">
@@ -2271,13 +2438,13 @@
       <div class="fl-links-col">
         <h4 class="fl-col-heading">Quicklinks</h4>
         <ul class="fl-links-list">
-          <li><a href="#about">About Us</a></li>
-          <li><a href="#recipes">Blog & Recipes</a></li>
-          <li><a href="#craving-cta">FAQs</a></li>
-          <li><a href="#stores">Contact Us</a></li>
-          <li><a href="#flavors">Cones & Sticks</a></li>
-          <li><a href="#categories">Cups & Biscuits</a></li>
-          <li><a href="#spin360">Gourmet Tubs</a></li>
+          <li><a href="#about-heritage">About Us</a></li>
+          <li><a href="#recipes">Blog &amp; Recipes</a></li>
+          <li><a href="#faqs">FAQs</a></li>
+          <li><a href="#contact-us">Contact Us</a></li>
+          <li><a href="#catalog-showcase">Cones &amp; Sticks</a></li>
+          <li><a href="#categories">Cups &amp; Biscuits</a></li>
+          <li><a href="#flavors">Gourmet Tubs</a></li>
         </ul>
       </div>
 
@@ -2323,6 +2490,8 @@
 <!-- Interactive Scripts -->
 <script src="assets/js/shared.js"></script>
 <script src="assets/js/viewer360.js"></script>
+<script src="assets/js/coverflow-studio.js"></script>
+<script src="assets/js/artisanal-scoop-cursor.js"></script>
   <script src="assets/js/design1.js"></script>
 </body>
 </html>

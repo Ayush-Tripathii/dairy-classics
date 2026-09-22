@@ -101,13 +101,13 @@ $current_design = isset($design) ? $design : 1;
       <div class="fl-links-col">
         <h4 class="fl-col-heading">Quicklinks</h4>
         <ul class="fl-links-list">
-          <li><a href="#about">About Us</a></li>
-          <li><a href="#recipes">Blog & Recipes</a></li>
-          <li><a href="#craving-cta">FAQs</a></li>
-          <li><a href="#stores">Contact Us</a></li>
-          <li><a href="#flavors">Cones & Sticks</a></li>
-          <li><a href="#categories">Cups & Biscuits</a></li>
-          <li><a href="#spin360">Gourmet Tubs</a></li>
+          <li><a href="#about-heritage">About Us</a></li>
+          <li><a href="#recipes">Blog &amp; Recipes</a></li>
+          <li><a href="#faqs">FAQs</a></li>
+          <li><a href="#contact-us">Contact Us</a></li>
+          <li><a href="#catalog-showcase">Cones &amp; Sticks</a></li>
+          <li><a href="#categories">Cups &amp; Biscuits</a></li>
+          <li><a href="#flavors">Gourmet Tubs</a></li>
         </ul>
       </div>
 
@@ -153,6 +153,8 @@ $current_design = isset($design) ? $design : 1;
 <!-- Interactive Scripts -->
 <script src="assets/js/shared.js"></script>
 <script src="assets/js/viewer360.js"></script>
+<script src="assets/js/coverflow-studio.js"></script>
+<script src="assets/js/artisanal-scoop-cursor.js"></script>
 <?php if ($current_design == 2): ?>
   <script src="assets/js/design2.js"></script>
 <?php else: ?>
