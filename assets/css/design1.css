@@ -4548,355 +4548,169 @@ img, svg, video, canvas {
 }
 
 /* ========================================================
-   GLOBAL SECTIONS CONTENT CENTER ALIGNMENT
+   MOBILE-ONLY CONTENT CENTER ALIGNMENT (max-width: 860px)
+   (Desktop / Laptop layouts remain in their original left-aligned design)
    ======================================================== */
-
-/* 1. Hero Section Content */
-.art-hero-text {
-  text-align: center;
-}
-.art-badge-pill {
-  margin: 0 auto 16px;
-}
-.art-subtitle {
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-}
-.art-cta-row {
-  justify-content: center;
-}
-.art-tags-row {
-  justify-content: center;
-}
-
-/* 2. Fresh Churned Treats Section */
-.pints-slider-head {
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 14px;
-}
-.pints-pop-card {
-  text-align: center;
-}
-.card-pop-top-row {
-  justify-content: center;
-  gap: 12px;
-}
-
-/* 3. Catalog Grid Card Bodies */
-.catalog-card-body {
-  text-align: center;
-}
-.catalog-card-foot {
-  justify-content: center;
-  gap: 10px;
-}
-
-/* 4. The Delicious Difference / Story Section */
-/* 4. The Delicious Difference / Story Section */
-.story-delicious-card {
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
-  min-width: 0;
-}
-.story-delicious-visual {
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
-  min-width: 0;
-}
-.story-delicious-content {
-  text-align: center;
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
-  min-width: 0;
-  padding: 48px 36px;
-}
-.story-kicker-gold {
-  display: block;
-  text-align: center;
-  margin-bottom: 10px;
-}
-.story-main-heading {
-  text-align: center;
-  font-size: clamp(1.65rem, 5vw, 2.75rem);
-  line-height: 1.2;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  max-width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-}
-.story-body-text {
-  text-align: center;
-  font-size: clamp(0.92rem, 2.4vw, 1.05rem);
-  line-height: 1.65;
-  max-width: 580px;
-  margin-left: auto;
-  margin-right: auto;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-}
-.story-features-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 18px;
-  max-width: 520px;
-  width: 100%;
-  margin: 24px auto;
-  box-sizing: border-box;
-}
-.story-feature-item {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  text-align: left;
-  min-width: 0;
-  box-sizing: border-box;
-}
-.story-actions-row {
-  justify-content: center;
-  display: flex;
-}
-
-@media (max-width: 768px) {
-  .story-delicious-card {
-    grid-template-columns: 1fr !important;
-    border-radius: 20px !important;
+@media (max-width: 860px) {
+  /* 1. Hero Section Content */
+  .art-hero-text {
+    text-align: center;
   }
-  .story-delicious-visual {
-    min-height: 280px !important;
+  .art-badge-pill {
+    margin: 0 auto 16px;
   }
-  .story-floating-badge {
-    bottom: 14px !important;
-    left: 14px !important;
-    padding: 10px 16px !important;
-    gap: 10px !important;
-    max-width: calc(100% - 28px) !important;
-    border-radius: 14px !important;
+  .art-subtitle {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
   }
+  .art-cta-row {
+    justify-content: center;
+  }
+  .art-tags-row {
+    justify-content: center;
+  }
+
+  /* 2. Fresh Churned Treats Section */
+  .pints-slider-head {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .pints-pop-card {
+    text-align: center;
+  }
+  .card-pop-top-row {
+    justify-content: center;
+    gap: 12px;
+  }
+
+  /* 3. Catalog Grid Card Bodies */
+  .catalog-card-body {
+    text-align: center;
+  }
+  .catalog-card-foot {
+    justify-content: center;
+    gap: 10px;
+  }
+
+  /* 4. The Delicious Difference / Story Section */
   .story-delicious-content {
-    padding: 30px 18px !important;
+    text-align: center;
+    padding: 36px 20px;
+  }
+  .story-kicker-gold {
+    display: block;
+    text-align: center;
+    margin-bottom: 10px;
   }
   .story-main-heading {
-    font-size: clamp(1.4rem, 6vw, 1.85rem) !important;
-    line-height: 1.22 !important;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
   }
   .story-body-text {
-    font-size: 0.92rem !important;
-    line-height: 1.55 !important;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
   }
   .story-features-grid {
-    grid-template-columns: 1fr !important;
-    gap: 14px !important;
-    margin: 20px auto !important;
+    margin: 20px auto;
   }
   .story-feature-item {
     justify-content: center;
     text-align: left;
   }
-}
-
-@media (max-width: 480px) {
-  .story-delicious-content {
-    padding: 24px 14px !important;
+  .story-actions-row {
+    justify-content: center;
+    display: flex;
   }
-  .story-main-heading {
-    font-size: 1.35rem !important;
+
+  /* 5. 3D Video Craft Showcase */
+  .video-craft-text {
+    text-align: center;
   }
-}
-
-/* 5. A Legacy of Excellence & Founder's Vision */
-.heritage-story-title,
-.heritage-story-lead {
-  text-align: left;
-}
-.founder-points-list {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  text-align: left;
-}
-.founder-point-item {
-  display: flex;
-  align-items: flex-start;
-  text-align: left;
-  gap: 16px;
-}
-.developments-bullets {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  text-align: left;
-  padding: 0;
-  margin: 14px 0 0;
-}
-.developments-bullets li {
-  display: flex;
-  align-items: flex-start;
-  text-align: left;
-  gap: 12px;
-}
-
-/* Mission & Vision Cards (Perfect icon-text alignment) */
-.mission-vision-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 28px;
-  margin: 40px 0;
-}
-@media (max-width: 600px) {
-  .mission-vision-grid {
-    grid-template-columns: 1fr !important;
-    gap: 18px !important;
+  .video-badge-pill {
+    margin: 0 auto 16px;
   }
-}
-.mission-vision-grid .mv-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 34px 28px;
-}
-.mv-head {
-  text-align: center;
-  margin-bottom: 18px;
-}
-.mv-list {
-  list-style: none;
-  padding: 0;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  width: 100%;
-  max-width: 330px;
-  text-align: left;
-}
-.mv-list li {
-  display: flex;
-  align-items: flex-start;
-  text-align: left;
-  gap: 12px;
-  font-size: 0.94rem;
-  line-height: 1.5;
-  color: #374151;
-}
-.mv-ico {
-  color: var(--art-berry);
-  font-size: 0.88rem;
-  line-height: 1.5;
-  flex-shrink: 0;
-  margin-top: 1px;
-}
-.sweet-moments-banner {
-  text-align: center;
-}
-.smb-content {
-  text-align: center;
-}
-.smb-action {
-  justify-content: center;
-}
+  .video-craft-heading,
+  .video-craft-desc {
+    text-align: center;
+  }
+  .video-craft-metrics {
+    justify-content: center;
+  }
+  .v-action-row {
+    justify-content: center;
+  }
 
-/* 6. 3D Video Craft Showcase */
-.video-craft-text {
-  text-align: center;
-}
-.video-badge-pill {
-  margin: 0 auto 16px;
-}
-.video-craft-heading,
-.video-craft-desc {
-  text-align: center;
-}
-.video-craft-metrics {
-  justify-content: center;
-}
-.v-action-row {
-  justify-content: center;
-}
+  /* 6. Pure Indulgence Section */
+  .indulgence-text-col {
+    text-align: center;
+  }
+  .indulgence-text-col .heritage-badge {
+    margin: 0 auto 14px;
+  }
+  .indulgence-text-col .heritage-main-title,
+  .indulgence-text-col .heritage-desc {
+    text-align: center;
+  }
+  .indulgence-text-col .heritage-actions-row {
+    justify-content: center;
+  }
 
-/* 7. Pure Indulgence Section */
-.indulgence-text-col {
-  text-align: center;
-}
-.indulgence-text-col .heritage-badge {
-  margin: 0 auto 14px;
-}
-.indulgence-text-col .heritage-main-title,
-.indulgence-text-col .heritage-desc {
-  text-align: center;
-}
-.indulgence-text-col .heritage-actions-row {
-  justify-content: center;
-}
+  /* 7. Uzbekistan's Favorite / Timeless Heritage */
+  .heritage-split-grid .heritage-text-col {
+    text-align: center;
+  }
+  .heritage-split-grid .heritage-badge {
+    margin: 0 auto 14px;
+  }
+  .heritage-split-grid .heritage-main-title,
+  .heritage-split-grid .heritage-desc {
+    text-align: center;
+  }
+  .heritage-split-grid .heritage-actions-row {
+    justify-content: center;
+  }
 
-/* 8. Uzbekistan's Favorite / Timeless Heritage */
-.heritage-split-grid .heritage-text-col {
-  text-align: center;
-}
-.heritage-split-grid .heritage-badge {
-  margin: 0 auto 14px;
-}
-.heritage-split-grid .heritage-main-title,
-.heritage-split-grid .heritage-desc {
-  text-align: center;
-}
-.heritage-split-grid .heritage-actions-row {
-  justify-content: center;
-}
+  /* 8. Signature Recipes Section */
+  .recipes-info-col {
+    text-align: center;
+  }
+  .recipes-info-col .recipe-badge {
+    margin: 0 auto 14px;
+  }
+  .recipes-info-col .recipe-title,
+  .recipes-info-col .recipe-desc {
+    text-align: center;
+  }
+  .recipe-steps-list {
+    margin: 20px auto 0;
+  }
 
-/* 9. Signature Recipes Section */
-.recipes-info-col {
-  text-align: center;
-}
-.recipes-info-col .recipe-badge {
-  margin: 0 auto 14px;
-}
-.recipes-info-col .recipe-title,
-.recipes-info-col .recipe-desc {
-  text-align: center;
-}
-.recipe-steps-list {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  max-width: 480px;
-  margin: 20px auto 0;
-  text-align: left;
-}
-.recipe-step-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  text-align: left;
-}
+  /* 9. Instagram Social Showcase */
+  .insta-card-info {
+    text-align: center;
+  }
+  .insta-sub-row {
+    justify-content: center;
+  }
 
-/* 10. Instagram Social Showcase */
-.insta-card-info {
-  text-align: center;
-}
-.insta-sub-row {
-  justify-content: center;
-}
+  /* 10. Got a Craving CTA */
+  .craving-cta-box {
+    text-align: center;
+  }
+  .craving-cta-actions {
+    justify-content: center;
+  }
 
-/* 11. Got a Craving CTA */
-.craving-cta-box {
-  text-align: center;
-}
-.craving-cta-actions {
-  justify-content: center;
-}
-
-/* 12. Contact Form & Destinations */
-.form-card-head {
-  text-align: center;
+  /* 11. Contact Form Head */
+  .form-card-head {
+    text-align: center;
+  }
 }
 
 /* ========================================================
